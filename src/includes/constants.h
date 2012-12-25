@@ -5,8 +5,8 @@
  * @author Cláudio Esperança <2120917@my.ipleiria.pt>, Diogo Serra <2120915@my.ipleiria.pt>, João Correia <2111415@my.ipleiria.pt>
  */
 
-#ifndef CUDAGEN_CONSTANTS_H_
-#define CUDAGEN_CONSTANTS_H_
+#ifndef SORTXXL_CONSTANTS_H_
+#define SORTXXL_CONSTANTS_H_
 
 /**
  * A default type for a boolean false value
@@ -68,4 +68,4 @@
  */
 #define M_FAILED_STRCPY 9
 
-#endif /* CUDAGEN_CONSTANTS_H_ */
+#endif /* SORTXXL_CONSTANTS_H_ */

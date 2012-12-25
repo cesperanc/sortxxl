@@ -24,7 +24,7 @@ ${SRC_DIR_3RD}/debug.o: ${SRC_DIR_3RD}/debug.c ${SRC_DIR_3RD}/debug.h
 ${SRC_DIR_3RD}/${PROGRAM_OPT}.o: ${SRC_DIR_3RD}/${PROGRAM_OPT}.c ${SRC_DIR_3RD}/${PROGRAM_OPT}.h
 
 
-## Force the compilation of the program as 32 bits
+## Force the compilation as 32 bits
 #EXTRA_CCFLAGS=-m32
 
 ## Libraries to include

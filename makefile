@@ -11,17 +11,23 @@
 ## Loads the configuration file
 include ./configs/makefile.inc
 
-## Flags to the compiler
+## Flags to the CC compiler
 CFLAGS=-Wall -W -g -Wmissing-prototypes 
 
 ## Flags to code indentation
 IFLAGS=-br -brs -npsl -ce -cli4
 
+## Flags to the compiler
+NVCCFLAGS=-lcublas -lcudart
+
+## Cuda compiler binary
+NVCC:=nvcc
+
 ## Directories with the project source code
 INCLUDE_DIRS=${SRC_DIR_3RD} ${SRC_DIR_INCLUDE} ${SRC_DIR} ${EXTRA_INCLUDE_DIRS}
 
 ## Generates a list of objects from the .c files on the directories specified on the variable INCLUDE_DIRS
-PROGRAM_OBJS:=$(patsubst %.c,%.o,$(wildcard $(patsubst %,./%/*.c,${INCLUDE_DIRS})))
+PROGRAM_OBJS:=$(patsubst %.c,%.o,$(wildcard $(patsubst %,./%/*.c,${INCLUDE_DIRS}))) $(patsubst %.cu,%.cu.o,$(wildcard $(patsubst %,./%/*.cu,${INCLUDE_DIRS}))) 
 
 ## If the variable with the options file is set, add the object file as a dependency
 ifdef PROGRAM_OPT
@@ -79,7 +85,11 @@ indent:
 #${PROGRAM}: gengetopt ${PROGRAM_OBJS}
 ${PROGRAM}: ${PROGRAM_OBJS}
 	@echo "Compiling '$@':"
-	${CC} ${EXTRA_CCFLAGS} -o $@ ${PROGRAM_OBJS} ${LIBS}
+	echo ${PROGRAM_OBJS}
+	$(NVCC) ${NVCCFLAGS} -o $@ ${PROGRAM_OBJS} ${LIBS}
+	
+%.cu.o: %.cu
+	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
 ## Compile .o from .c
 %.o: %.c %.h
