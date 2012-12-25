@@ -1,0 +1,8 @@
+/* Credits..  */
+          if (strcmp (long_options[option_index].name, "about") == 0)
+          {
+          
+            if (args_info->Flags_group_counter && override)
+              reset_group_Flags (args_info);
+            args_info->Flags_group_counter += 1;
+            args_info->directory_group_counter += 1; //little hack
