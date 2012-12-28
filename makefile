@@ -18,7 +18,7 @@ CFLAGS=-Wall -W -g -Wmissing-prototypes
 IFLAGS=-br -brs -npsl -ce -cli4
 
 ## Flags to the compiler
-NVCCFLAGS=-lcublas -lcudart
+NVCCFLAGS=-lcublas -lcudart -lcurand --debug
 
 ## Cuda compiler binary
 NVCC:=nvcc
@@ -80,7 +80,6 @@ indent:
 	dos2unix *.c *.h
 	indent ${IFLAGS} *.c *.h
 
-
 ## Constructs the executable
 #${PROGRAM}: gengetopt ${PROGRAM_OBJS}
 ${PROGRAM}: ${PROGRAM_OBJS}
@@ -88,11 +87,11 @@ ${PROGRAM}: ${PROGRAM_OBJS}
 	echo ${PROGRAM_OBJS}
 	$(NVCC) ${NVCCFLAGS} -o $@ ${PROGRAM_OBJS} ${LIBS}
 	
-%.cu.o: %.cu
-	$(NVCC) $(NVCCFLAGS) -c $< -o $@
-
 ## Compile .o from .c
 %.o: %.c %.h
-	@echo "${SRC_DIR_3RD_dot}/${PROGRAM_OPT}.h"
-	@echo "Construction the object '$@':"
+	@echo "Construction the object '$@' with ${CC}:"
 	${CC} ${CFLAGS} ${EXTRA_CCFLAGS} -c -o $@ $<
+	
+%.cu.o: %.cu
+	@echo "Construction the object '$@' with ${NVCC}:"
+	$(NVCC) $(NVCCFLAGS) -c $< -o $@

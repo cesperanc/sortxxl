@@ -32,19 +32,19 @@ const char *gengetopt_args_info_usage = "Usage: For educational proposes only.";
 const char *gengetopt_args_info_description = "Program for CAD (Computação de Alto Desempenho) @ MEI-CM 2012/2013";
 
 const char *gengetopt_args_info_help[] = {
-  "  -h, --help               Print help and exit",
-  "  -V, --version            Print version and exit",
+  "  -h, --help                Print help and exit",
+  "  -V, --version             Print version and exit",
+  "\n Group: data source\n  the data source to use",
+  "  -i, --input=inputFile     Text file containing the numbers to sort.",
+  "  -r, --random=numNumbers   Number of numbers to be generated.",
+  "      --about               Application credits.",
   "\n Mode: sortXXL options\n  grouping sortXXL options",
-  "  -i, --input=inputFile    Text file containing the numbers to sort.",
-  "  -o, --output=outputFile  Output text file with the sorted numbers.",
-  "  -b, --benchmark=INT      Benchmark mode. Number of times that sortXXL that \n                             will execute, presenting the execution time in the \n                             end.",
-  "  -m, --min=INT            Minimum value to be sorted.",
-  "  -M, --max=INT            Maximum value to be sorted.",
-  "  -r, --random=INT         Number of numbers to be generated.",
-  "  -d, --demo               Demo mode.  (default=off)",
-  "  -g, --gpu                Show graphic card's information.  (default=off)",
-  "\n Mode: Information options\n  grouping information options",
-  "      --about              Credits.",
+  "  -o, --output=outputFile   Output text file with the sorted numbers.",
+  "  -b, --benchmark=numTimes  Benchmark mode. Number of times that sortXXL that \n                              will execute, presenting the execution time in \n                              the end.  (default=`1')",
+  "  -m, --min=minNumber       Minimum value to be sorted.",
+  "  -M, --max=maxNumber       Maximum value to be sorted.",
+  "  -d, --demo                Demo mode.  (default=off)",
+  "  -g, --gpu                 Show graphic card's information.  (default=off)",
     0
 };
 
@@ -75,15 +75,15 @@ void clear_given (struct gengetopt_args_info *args_info)
   args_info->help_given = 0 ;
   args_info->version_given = 0 ;
   args_info->input_given = 0 ;
+  args_info->random_given = 0 ;
+  args_info->about_given = 0 ;
   args_info->output_given = 0 ;
   args_info->benchmark_given = 0 ;
   args_info->min_given = 0 ;
   args_info->max_given = 0 ;
-  args_info->random_given = 0 ;
   args_info->demo_given = 0 ;
   args_info->gpu_given = 0 ;
-  args_info->about_given = 0 ;
-  args_info->Information_options_mode_counter = 0 ;
+  args_info->data_source_group_counter = 0 ;
   args_info->sortXXL_options_mode_counter = 0 ;
 }
 
@@ -93,12 +93,13 @@ void clear_args (struct gengetopt_args_info *args_info)
   FIX_UNUSED (args_info);
   args_info->input_arg = NULL;
   args_info->input_orig = NULL;
+  args_info->random_orig = NULL;
   args_info->output_arg = NULL;
   args_info->output_orig = NULL;
+  args_info->benchmark_arg = 1;
   args_info->benchmark_orig = NULL;
   args_info->min_orig = NULL;
   args_info->max_orig = NULL;
-  args_info->random_orig = NULL;
   args_info->demo_flag = 0;
   args_info->gpu_flag = 0;
   
@@ -112,14 +113,14 @@ void init_args_info(struct gengetopt_args_info *args_info)
   args_info->help_help = gengetopt_args_info_help[0] ;
   args_info->version_help = gengetopt_args_info_help[1] ;
   args_info->input_help = gengetopt_args_info_help[3] ;
-  args_info->output_help = gengetopt_args_info_help[4] ;
-  args_info->benchmark_help = gengetopt_args_info_help[5] ;
-  args_info->min_help = gengetopt_args_info_help[6] ;
-  args_info->max_help = gengetopt_args_info_help[7] ;
-  args_info->random_help = gengetopt_args_info_help[8] ;
-  args_info->demo_help = gengetopt_args_info_help[9] ;
-  args_info->gpu_help = gengetopt_args_info_help[10] ;
-  args_info->about_help = gengetopt_args_info_help[12] ;
+  args_info->random_help = gengetopt_args_info_help[4] ;
+  args_info->about_help = gengetopt_args_info_help[5] ;
+  args_info->output_help = gengetopt_args_info_help[7] ;
+  args_info->benchmark_help = gengetopt_args_info_help[8] ;
+  args_info->min_help = gengetopt_args_info_help[9] ;
+  args_info->max_help = gengetopt_args_info_help[10] ;
+  args_info->demo_help = gengetopt_args_info_help[11] ;
+  args_info->gpu_help = gengetopt_args_info_help[12] ;
   
 }
 
@@ -202,12 +203,12 @@ cmdline_parser_release (struct gengetopt_args_info *args_info)
 
   free_string_field (&(args_info->input_arg));
   free_string_field (&(args_info->input_orig));
+  free_string_field (&(args_info->random_orig));
   free_string_field (&(args_info->output_arg));
   free_string_field (&(args_info->output_orig));
   free_string_field (&(args_info->benchmark_orig));
   free_string_field (&(args_info->min_orig));
   free_string_field (&(args_info->max_orig));
-  free_string_field (&(args_info->random_orig));
   
   
 
@@ -244,6 +245,10 @@ cmdline_parser_dump(FILE *outfile, struct gengetopt_args_info *args_info)
     write_into_file(outfile, "version", 0, 0 );
   if (args_info->input_given)
     write_into_file(outfile, "input", args_info->input_orig, 0);
+  if (args_info->random_given)
+    write_into_file(outfile, "random", args_info->random_orig, 0);
+  if (args_info->about_given)
+    write_into_file(outfile, "about", 0, 0 );
   if (args_info->output_given)
     write_into_file(outfile, "output", args_info->output_orig, 0);
   if (args_info->benchmark_given)
@@ -252,14 +257,10 @@ cmdline_parser_dump(FILE *outfile, struct gengetopt_args_info *args_info)
     write_into_file(outfile, "min", args_info->min_orig, 0);
   if (args_info->max_given)
     write_into_file(outfile, "max", args_info->max_orig, 0);
-  if (args_info->random_given)
-    write_into_file(outfile, "random", args_info->random_orig, 0);
   if (args_info->demo_given)
     write_into_file(outfile, "demo", 0, 0 );
   if (args_info->gpu_given)
     write_into_file(outfile, "gpu", 0, 0 );
-  if (args_info->about_given)
-    write_into_file(outfile, "about", 0, 0 );
   
 
   i = EXIT_SUCCESS;
@@ -305,6 +306,22 @@ gengetopt_strdup (const char *s)
     return (char*)0;
   strcpy(result, s);
   return result;
+}
+
+static void
+reset_group_data_source(struct gengetopt_args_info *args_info)
+{
+  if (! args_info->data_source_group_counter)
+    return;
+  
+  args_info->input_given = 0 ;
+  free_string_field (&(args_info->input_arg));
+  free_string_field (&(args_info->input_orig));
+  args_info->random_given = 0 ;
+  free_string_field (&(args_info->random_orig));
+  args_info->about_given = 0 ;
+
+  args_info->data_source_group_counter = 0;
 }
 
 int
@@ -376,58 +393,14 @@ cmdline_parser_required2 (struct gengetopt_args_info *args_info, const char *pro
   FIX_UNUSED (additional_error);
 
   /* checks for required options */
-  if (args_info->sortXXL_options_mode_counter && ! args_info->input_given)
+  if (args_info->data_source_group_counter == 0)
     {
-      fprintf (stderr, "%s: '--input' ('-i') option required%s\n", prog_name, (additional_error ? additional_error : ""));
+      fprintf (stderr, "%s: %d options of group data source were given. One is required%s.\n", prog_name, args_info->data_source_group_counter, (additional_error ? additional_error : ""));
       error = 1;
     }
   
-  if (args_info->sortXXL_options_mode_counter && ! args_info->output_given)
-    {
-      fprintf (stderr, "%s: '--output' ('-o') option required%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  
-  if (args_info->sortXXL_options_mode_counter && ! args_info->benchmark_given)
-    {
-      fprintf (stderr, "%s: '--benchmark' ('-b') option required%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  
-  if (args_info->sortXXL_options_mode_counter && ! args_info->random_given)
-    {
-      fprintf (stderr, "%s: '--random' ('-r') option required%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  
-  if (args_info->Information_options_mode_counter && ! args_info->about_given)
-    {
-      fprintf (stderr, "%s: '--about' option required%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  
-  
+
   /* checks for dependences among options */
-  if (args_info->input_given && ! args_info->output_given)
-    {
-      fprintf (stderr, "%s: '--input' ('-i') option depends on option 'output'%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  if (args_info->output_given && ! args_info->input_given)
-    {
-      fprintf (stderr, "%s: '--output' ('-o') option depends on option 'input'%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  if (args_info->min_given && ! args_info->random_given)
-    {
-      fprintf (stderr, "%s: '--min' ('-m') option depends on option 'random'%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
-  if (args_info->max_given && ! args_info->random_given)
-    {
-      fprintf (stderr, "%s: '--max' ('-M') option depends on option 'random'%s\n", prog_name, (additional_error ? additional_error : ""));
-      error = 1;
-    }
 
   return error;
 }
@@ -612,18 +585,18 @@ cmdline_parser_internal (
         { "help",	0, NULL, 'h' },
         { "version",	0, NULL, 'V' },
         { "input",	1, NULL, 'i' },
+        { "random",	1, NULL, 'r' },
+        { "about",	0, NULL, 0 },
         { "output",	1, NULL, 'o' },
         { "benchmark",	1, NULL, 'b' },
         { "min",	1, NULL, 'm' },
         { "max",	1, NULL, 'M' },
-        { "random",	1, NULL, 'r' },
         { "demo",	0, NULL, 'd' },
         { "gpu",	0, NULL, 'g' },
-        { "about",	0, NULL, 0 },
         { 0,  0, 0, 0 }
       };
 
-      c = getopt_long (argc, argv, "hVi:o:b:m:M:r:dg", long_options, &option_index);
+      c = getopt_long (argc, argv, "hVi:r:o:b:m:M:dg", long_options, &option_index);
 
       if (c == -1) break;	/* Exit from `while (1)' loop.  */
 
@@ -640,14 +613,31 @@ cmdline_parser_internal (
           exit (EXIT_SUCCESS);
 
         case 'i':	/* Text file containing the numbers to sort..  */
-          args_info->sortXXL_options_mode_counter += 1;
         
+          if (args_info->data_source_group_counter && override)
+            reset_group_data_source (args_info);
+          args_info->data_source_group_counter += 1;
         
           if (update_arg( (void *)&(args_info->input_arg), 
                &(args_info->input_orig), &(args_info->input_given),
               &(local_args_info.input_given), optarg, 0, 0, ARG_STRING,
               check_ambiguity, override, 0, 0,
               "input", 'i',
+              additional_error))
+            goto failure;
+        
+          break;
+        case 'r':	/* Number of numbers to be generated..  */
+        
+          if (args_info->data_source_group_counter && override)
+            reset_group_data_source (args_info);
+          args_info->data_source_group_counter += 1;
+        
+          if (update_arg( (void *)&(args_info->random_arg), 
+               &(args_info->random_orig), &(args_info->random_given),
+              &(local_args_info.random_given), optarg, 0, 0, ARG_INT,
+              check_ambiguity, override, 0, 0,
+              "random", 'r',
               additional_error))
             goto failure;
         
@@ -671,7 +661,7 @@ cmdline_parser_internal (
         
           if (update_arg( (void *)&(args_info->benchmark_arg), 
                &(args_info->benchmark_orig), &(args_info->benchmark_given),
-              &(local_args_info.benchmark_given), optarg, 0, 0, ARG_INT,
+              &(local_args_info.benchmark_given), optarg, 0, "1", ARG_INT,
               check_ambiguity, override, 0, 0,
               "benchmark", 'b',
               additional_error))
@@ -704,19 +694,6 @@ cmdline_parser_internal (
             goto failure;
         
           break;
-        case 'r':	/* Number of numbers to be generated..  */
-          args_info->sortXXL_options_mode_counter += 1;
-        
-        
-          if (update_arg( (void *)&(args_info->random_arg), 
-               &(args_info->random_orig), &(args_info->random_given),
-              &(local_args_info.random_given), optarg, 0, 0, ARG_INT,
-              check_ambiguity, override, 0, 0,
-              "random", 'r',
-              additional_error))
-            goto failure;
-        
-          break;
         case 'd':	/* Demo mode..  */
         
         
@@ -739,11 +716,13 @@ cmdline_parser_internal (
           break;
 
         case 0:	/* Long option with no short option */
-          /* Credits..  */
+          /* Application credits..  */
           if (strcmp (long_options[option_index].name, "about") == 0)
           {
-            args_info->Information_options_mode_counter += 1;
           
+            if (args_info->data_source_group_counter && override)
+              reset_group_data_source (args_info);
+            args_info->data_source_group_counter += 1;
           
             if (update_arg( 0 , 
                  0 , &(args_info->about_given),
@@ -766,16 +745,14 @@ cmdline_parser_internal (
         } /* switch */
     } /* while */
 
-
-
-  if (args_info->Information_options_mode_counter && args_info->sortXXL_options_mode_counter) {
-    int Information_options_given[] = {args_info->about_given,  -1};
-    const char *Information_options_desc[] = {"--about",  0};
-    int sortXXL_options_given[] = {args_info->input_given, args_info->output_given, args_info->benchmark_given, args_info->min_given, args_info->max_given, args_info->random_given,  -1};
-    const char *sortXXL_options_desc[] = {"--input", "--output", "--benchmark", "--min", "--max", "--random",  0};
-    error += check_modes(Information_options_given, Information_options_desc, sortXXL_options_given, sortXXL_options_desc);
-  }
+  if (args_info->data_source_group_counter > 1)
+    {
+      fprintf (stderr, "%s: %d options of group data source were given. One is required%s.\n", argv[0], args_info->data_source_group_counter, (additional_error ? additional_error : ""));
+      error = 1;
+    }
   
+
+
   if (check_required)
     {
       error += cmdline_parser_required2 (args_info, argv[0], additional_error);

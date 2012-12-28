@@ -42,10 +42,14 @@ struct gengetopt_args_info
   char * input_arg;	/**< @brief Text file containing the numbers to sort..  */
   char * input_orig;	/**< @brief Text file containing the numbers to sort. original value given at command line.  */
   const char *input_help; /**< @brief Text file containing the numbers to sort. help description.  */
+  int random_arg;	/**< @brief Number of numbers to be generated..  */
+  char * random_orig;	/**< @brief Number of numbers to be generated. original value given at command line.  */
+  const char *random_help; /**< @brief Number of numbers to be generated. help description.  */
+  const char *about_help; /**< @brief Application credits. help description.  */
   char * output_arg;	/**< @brief Output text file with the sorted numbers..  */
   char * output_orig;	/**< @brief Output text file with the sorted numbers. original value given at command line.  */
   const char *output_help; /**< @brief Output text file with the sorted numbers. help description.  */
-  int benchmark_arg;	/**< @brief Benchmark mode. Number of times that sortXXL that will execute, presenting the execution time in the end..  */
+  int benchmark_arg;	/**< @brief Benchmark mode. Number of times that sortXXL that will execute, presenting the execution time in the end. (default='1').  */
   char * benchmark_orig;	/**< @brief Benchmark mode. Number of times that sortXXL that will execute, presenting the execution time in the end. original value given at command line.  */
   const char *benchmark_help; /**< @brief Benchmark mode. Number of times that sortXXL that will execute, presenting the execution time in the end. help description.  */
   int min_arg;	/**< @brief Minimum value to be sorted..  */
@@ -54,28 +58,24 @@ struct gengetopt_args_info
   int max_arg;	/**< @brief Maximum value to be sorted..  */
   char * max_orig;	/**< @brief Maximum value to be sorted. original value given at command line.  */
   const char *max_help; /**< @brief Maximum value to be sorted. help description.  */
-  int random_arg;	/**< @brief Number of numbers to be generated..  */
-  char * random_orig;	/**< @brief Number of numbers to be generated. original value given at command line.  */
-  const char *random_help; /**< @brief Number of numbers to be generated. help description.  */
   int demo_flag;	/**< @brief Demo mode. (default=off).  */
   const char *demo_help; /**< @brief Demo mode. help description.  */
   int gpu_flag;	/**< @brief Show graphic card's information. (default=off).  */
   const char *gpu_help; /**< @brief Show graphic card's information. help description.  */
-  const char *about_help; /**< @brief Credits. help description.  */
   
   unsigned int help_given ;	/**< @brief Whether help was given.  */
   unsigned int version_given ;	/**< @brief Whether version was given.  */
   unsigned int input_given ;	/**< @brief Whether input was given.  */
+  unsigned int random_given ;	/**< @brief Whether random was given.  */
+  unsigned int about_given ;	/**< @brief Whether about was given.  */
   unsigned int output_given ;	/**< @brief Whether output was given.  */
   unsigned int benchmark_given ;	/**< @brief Whether benchmark was given.  */
   unsigned int min_given ;	/**< @brief Whether min was given.  */
   unsigned int max_given ;	/**< @brief Whether max was given.  */
-  unsigned int random_given ;	/**< @brief Whether random was given.  */
   unsigned int demo_given ;	/**< @brief Whether demo was given.  */
   unsigned int gpu_given ;	/**< @brief Whether gpu was given.  */
-  unsigned int about_given ;	/**< @brief Whether about was given.  */
 
-  int Information_options_mode_counter; /**< @brief Counter for mode Information_options */
+  int data_source_group_counter; /**< @brief Counter for group data_source */
   int sortXXL_options_mode_counter; /**< @brief Counter for mode sortXXL_options */
 } ;
 

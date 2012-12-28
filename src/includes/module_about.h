@@ -5,8 +5,8 @@
  * @author Cláudio Esperança <2120917@my.ipleiria.pt>, Diogo Serra <2120915@my.ipleiria.pt>, João Correia <2111415@my.ipleiria.pt>
  */
 
-#ifndef MODULE_CREDITS_H
-#define	MODULE_CREDITS_H
+#ifndef MODULE_ABOUT_H
+#define	MODULE_ABOUT_H
 
 /**
  * @brief Output the credits message
@@ -15,18 +15,5 @@
  * @author Joao Correia <joao.pedro.j.correia@gmail.com>
  */
 void about_sort_XXL(struct gengetopt_args_info args_info);
-
-/**
- * @brief Output the CUDA system information
- * @author Diogo Serra <2120915@my.ipleiria.pt>
- */
-void system_info();
-
-/**
- * @brief Compute the number of cores string
- * @author Diogo Serra <2120915@my.ipleiria.pt>
- */
-char* number_of_cores(double, double);
-
-#endif	/* MODULE_CREDITS_H */
+#endif	/* MODULE_ABOUT_H */
 

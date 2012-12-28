@@ -7,14 +7,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <cuda.h>
-
 #include "../3rd/sortXXL_cmd.h"
-#include "../3rd/HandleError.h"
 
-#include "constants.h"
 #include "module_about.h"
-
 
 void about_sort_XXL(struct gengetopt_args_info args_info){
 	if (args_info.about_given == 1){
@@ -24,40 +19,8 @@ void about_sort_XXL(struct gengetopt_args_info args_info){
     	printf ("\nAuthors:");
     	printf ("\nCláudio Esperança\t <2120917@my.ipleiria.pt>\nDiogo Serra\t\t <2120915@my.ipleiria.pt>\nJoão Correia\t\t <2111415@my.ipleiria.pt> \n\n");
 
-    	system_info();
+    	printf ("\nCredits:");
+		printf ("\n\tBase CUDA bitonic algorithm implementation: \n\tAyushi Sinha, Providence College. \n\tSorting on CUDA - Annual Celebration of Student Scholarship and Creativity, \n\thttp://digitalcommons.providence.edu/student_scholarship/7/, \n\tSpring 2011 \n\tLicense: unspecified\n\n");
+
     }
-}
-
-void system_info(){
-	cudaDeviceProp prop;
-	int count;
-
-	/* Get info from device */
-	cudaGetDeviceCount(&count);
-	for (int i=0; i< count; i++){
-		HANDLE_ERROR (cudaGetDeviceProperties(&prop,i));
-		printf( " --- Information for device %d ---\n", i );
-		printf( "Name: %s\n", prop.name );
-		printf( "Compute capability: %d.%d\n", prop.major, prop.minor );
-		printf( "Number of cores: %s\n", number_of_cores(prop.major, prop.minor) );
-		printf( " --- Memory Information for device %d ---\n", i );
-		printf( "Total global mem: %zu\n",prop.totalGlobalMem );
-		printf( " --- MP Information for device %d ---\n", i );
-		printf( "Multiprocessor count: %d\n",prop.multiProcessorCount );
-	}
-}
-
-char* number_of_cores(double gpu_major, double gpu_minor){
-	double cap = gpu_major*10+gpu_minor;
-	if(cap <= 13){
-		return "8";
-	}else if(cap == 20){
-		return "32";
-	}else if(cap == 21){
-		return "48";
-	}else if(cap == 30){
-		return "192";
-	}else{
-		return "unsupported";
-	}
 }

@@ -30,5 +30,6 @@ int remove_directory(const char *);
 char* get_current_time(char*, int);
 char* concatenate_filename(const char*, const char*, const char);
 char* base_name (char *, const char);
+float time_diff(struct timeval start, struct timeval end);
 
 #endif /* AUX_H_ */

@@ -29,6 +29,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -84,6 +85,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:acb4de5ff5bef73b5bee5adc3b5d75348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the filename with a directory path.  <a href="#acb4de5ff5bef73b5bee5adc3b5d75348"></a><br/></td></tr>
 <tr class="memitem:a3722ce8b1463945e5877fff5bb282e74"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a3722ce8b1463945e5877fff5bb282e74">base_name</a> (char *, const char)</td></tr>
 <tr class="memdesc:a3722ce8b1463945e5877fff5bb282e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the filename with a directory path (visit <a href="http://minkirri.apana.org.au/~abo/projects/librsync/small-1.0/replace/basename.c">http://minkirri.apana.org.au/~abo/projects/librsync/small-1.0/replace/basename.c</a> for original source code)  <a href="#a3722ce8b1463945e5877fff5bb282e74"></a><br/></td></tr>
+<tr class="memitem:a1078f93628eff6e0c1c0d4bd23d162e7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a1078f93628eff6e0c1c0d4bd23d162e7">time_diff</a> (struct timeval start, struct timeval end)</td></tr>
+<tr class="memdesc:a1078f93628eff6e0c1c0d4bd23d162e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the difference between two timeval in seconds.  <a href="#a1078f93628eff6e0c1c0d4bd23d162e7"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>header file for the auxiliary functions </p>
@@ -105,7 +108,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Macro to print on the stderr useful depuration information. It accepts a variable number of parameters. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="aux_8c.html#a0035ed291e4299e984142f526a474dda" title="This function is based on the 3rd/debug.c debug function and operates using a very similar mode...">my_debug()</a> for more information about this function </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="aux_8cu.html#a0035ed291e4299e984142f526a474dda" title="This function is based on the 3rd/debug.c debug function and operates using a very similar mode...">my_debug()</a> for more information about this function </dd></dl>
 
 </div>
 </div>
@@ -468,8 +471,45 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1078f93628eff6e0c1c0d4bd23d162e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float time_diff </td>
+          <td>(</td>
+          <td class="paramtype">struct timeval&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct timeval&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate the difference between two timeval in seconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>with the start time </td></tr>
+    <tr><td class="paramname">end</td><td>with the end time </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>float with the difference</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a>, Diogo Serra <a href="#" onclick="location.href='mai'+'lto:'+'208'+'10'+'08@'+'st'+'ude'+'nt'+'.es'+'tg'+'.ip'+'le'+'iri'+'a.'+'pt'; return false;">20810<span style="display: none;">.nosp@m.</span>08@s<span style="display: none;">.nosp@m.</span>tuden<span style="display: none;">.nosp@m.</span>t.es<span style="display: none;">.nosp@m.</span>tg.ip<span style="display: none;">.nosp@m.</span>leir<span style="display: none;">.nosp@m.</span>ia.pt</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 25 2012 10:46:27 for sortXXL</small></address>
+Generated on Fri Dec 28 2012 04:09:25 for sortXXL</small></address>
 </body>
 </html>

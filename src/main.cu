@@ -3,7 +3,7 @@
 * The sortXXL is an application to sort a big amount of numbers
 * 
 * 
-* @file main.c
+* @file main.cu
 * @brief Main source file for the sortXLL program
 * @date 2012-12-03 File creation
 * @author Cláudio Esperança <2120917@my.ipleiria.pt>, Diogo Serra <2120915@my.ipleiria.pt>, João Correia <2111415@my.ipleiria.pt>
@@ -20,6 +20,8 @@
 #include "includes/aux.h"
 
 #include "includes/module_about.h"
+#include "includes/module_system_info.h"
+#include "includes/module_benchmark.h"
 
 #include "main.h"
 
@@ -43,23 +45,15 @@ int main(int argc, char *argv[]){
         result = M_INVALID_PARAMETERS;
     }
     
-   //if (args_info.about_given < 1 && args_info.help_given < 1){
-    
-        // Output directory manager. Use the args_info.dir_arg afterwards as the base directory for the files
-        /*if(output_directory(&args_info)!=M_OK){
-            ERROR(M_OUTPUT_DIRECTORY_FAILED,"\nUnable to use the output directory provided\n");
-        }*/
+    // Sort the data
+    benchmark(args_info);
 
-        // Outputs the main file
-        //output_kernel(args_info);
-        
-        // Create the makefile file
-        //ouput_makefile(args_info);
-    //}
-    
+    // Output the system information
+    system_info(args_info);
+
     // Output the credits
     about_sort_XXL(args_info);
-    
+
     // Free the command line parser memory
     cmdline_parser_free(&args_info);
 

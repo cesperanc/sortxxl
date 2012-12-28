@@ -7,52 +7,43 @@
 	usage "For educational proposes only."
 	description "Program for CAD (Computação de Alto Desempenho) @ MEI-CM 2012/2013"
 	
-defmode  "Information options" modedesc="grouping information options"
+defgroup "data source" groupdesc="the data source to use" required
+     groupoption "input" i "Text file containing the numbers to sort." group="data source" string typestr="inputFile"
+     groupoption "random" r "Number of numbers to be generated." group="data source" int typestr="numNumbers"
+     groupoption "about" - "Application credits." group="data source" argoptional
+     
+     
 defmode  "sortXXL options"  modedesc="grouping sortXXL options"
-
-modeoption "input" i "Text file containing the numbers to sort."
-	string
-	string typestr="inputFile"
-	mode="sortXXL options"
-	dependon="output"
-	required
 
 modeoption "output" o "Output text file with the sorted numbers."
 	string
 	string typestr="outputFile"
 	mode="sortXXL options"
-	dependon="input"
-	required
+	optional
 
 modeoption "benchmark" b "Benchmark mode. Number of times that sortXXL that will execute, presenting the execution time in the end."
 	int
 	mode="sortXXL options"
-	required
+	typestr="numTimes"
+	default="1"
+	optional
 
 modeoption "min" m "Minimum value to be sorted."
 	int
-	dependon="random"
 	mode="sortXXL options"
+	typestr="minNumber"
 	optional
 
 modeoption "max" M "Maximum value to be sorted."
 	int
-	dependon="random"
 	mode="sortXXL options"
+	typestr="maxNumber"
 	optional
-
-modeoption "random" r "Number of numbers to be generated."
-	int
-	mode="sortXXL options"
-	required
 
 option "demo" d "Demo mode."
 	flag off
 
 option "gpu" g "Show graphic card's information."
 	flag off
-
-modeoption "about" - "Credits."
-	mode="Information options"
-	required
+	
 
