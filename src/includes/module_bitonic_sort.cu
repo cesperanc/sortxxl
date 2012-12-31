@@ -15,6 +15,7 @@
 #include "../3rd/HandleError.h"
 
 #include "constants.h"
+#include "aux.h"
 #include "module_bitonic_sort.h"
 
 
@@ -45,7 +46,7 @@ float bitonic_sort(int **values, int n){
 			// Update the size
 			size = padded_size*sizeof(int);
 		}else{
-			printf("Problem while allocating the necessary memory for padding (memory exhausted?)\n");
+			MY_DEBUG("Problem while allocating the necessary memory for padding (memory exhausted?)\n");
 		}
 	}
 
@@ -55,7 +56,7 @@ float bitonic_sort(int **values, int n){
 	// copy data to device
 	HANDLE_ERROR( cudaMemcpy(dev_values, resized_values, size, cudaMemcpyHostToDevice) );
 
-	printf("Beginning kernel execution...\n");
+	MY_DEBUG("Beginning kernel execution...\n");
 
 	// Create the timers
 	HANDLE_ERROR (cudaEventCreate (&start));
@@ -138,33 +139,4 @@ __global__ void cuda_bitonic_sort(int* values, int j, int k, int n) {
 			}
 		}
 	}
-}
-
-int get_next_power_of_two(int size){
-	int n = 1;
-	while (n < size) n *= 2;
-	return n;
-}
-
-void pad_data_to_align_with(int *data, int current_size, int to_size, int with){
-	int i;
-	for(i=current_size; i<to_size; i++){
-		data[i] = with;
-	}
-}
-
-void pad_data_to_align(int *data, int current_size, int to_size){
-	pad_data_to_align_with(data, current_size, to_size, INT_MAX);
-}
-
-int pad_data_to_align_with_next_power_of_two_with(int *data, int current_size, int with){
-	int next_power_of_two = get_next_power_of_two(current_size);
-	pad_data_to_align_with(data, current_size, next_power_of_two, with);
-	return next_power_of_two;
-}
-
-int pad_data_to_align_with_next_power_of_two_with(int *data, int current_size){
-	int next_power_of_two = get_next_power_of_two(current_size);
-	pad_data_to_align(data, current_size, next_power_of_two);
-	return next_power_of_two;
 }

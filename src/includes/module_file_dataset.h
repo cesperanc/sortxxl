@@ -6,17 +6,25 @@
  */
 
 #ifndef MODULE_FILE_DATASET_H
-#define	MODULE_FILE_DATASET_H
+	#define	MODULE_FILE_DATASET_H
 
-/**
- * @brief Load the data set from a file
- * @param args_info struct gengetopt_args_info with the parameters given to the application
- * @param data with the pointer for the address were to store the data
- * @param n with the number of elements loaded
- *
- * @author Cláudio Esperança <cesperanc@gmail.com>
- */
-int file_dataset(struct gengetopt_args_info args_info, int **data, int *n);
+	#ifdef __cplusplus
+		extern "C" {
+	#include <cstddef>
+	#endif
 
+			/**
+			 * @brief Load the data set from a file
+			 * @param args_info struct gengetopt_args_info with the parameters given to the application
+			 * @param data with the pointer for the address were to store the data
+			 * @param n with the number of elements loaded
+			 *
+			 * @author Cláudio Esperança <cesperanc@gmail.com>
+			 */
+			int file_dataset(struct gengetopt_args_info args_info, int **data, int *n);
+
+	#ifdef __cplusplus
+		}
+	#endif
 #endif	/* MODULE_FILE_DATASET_H */
 

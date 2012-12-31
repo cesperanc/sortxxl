@@ -12,19 +12,19 @@
 include ./configs/makefile.inc
 
 ## Flags to the CC compiler
-CFLAGS=-Wall -W -g -Wmissing-prototypes 
-
-## Flags to code indentation
-IFLAGS=-br -brs -npsl -ce -cli4
+CFLAGS= ${LIBS}
 
 ## Flags to the compiler
-NVCCFLAGS=-lcublas -lcudart -lcurand --debug
+NVCCFLAGS=-lcublas -lcudart -lcurand ${LIBS}
 
 ## Cuda compiler binary
 NVCC:=nvcc
 
+## Flags to code indentation
+IFLAGS=-br -brs -npsl -ce -cli4
+
 ## Directories with the project source code
-INCLUDE_DIRS=${SRC_DIR_3RD} ${SRC_DIR_INCLUDE} ${SRC_DIR} ${EXTRA_INCLUDE_DIRS}
+INCLUDE_DIRS=${SRC_DIR_3RD} ${EXTRA_INCLUDE_DIRS} ${SRC_DIR_INCLUDE} ${SRC_DIR}
 
 ## Generates a list of objects from the .c files on the directories specified on the variable INCLUDE_DIRS
 PROGRAM_OBJS:=$(patsubst %.c,%.o,$(wildcard $(patsubst %,./%/*.c,${INCLUDE_DIRS}))) $(patsubst %.cu,%.cu.o,$(wildcard $(patsubst %,./%/*.cu,${INCLUDE_DIRS}))) 
@@ -47,7 +47,8 @@ endif
 .SUFFIXES: .c .cu .o
 
 ## Compile with depuration
-debug: CFLAGS += -D SHOW_DEBUG 
+debug: CFLAGS += -D SHOW_DEBUG -Wall -W -g -Wmissing-prototypes -Wsign-compare -Wunused-parameter -Wunused-function
+debug: NVCCFLAGS += -D SHOW_DEBUG --debug -g 
 debug: ${PROGRAM}
 
 ## To generate the files with gengetopt 
@@ -85,7 +86,7 @@ indent:
 ${PROGRAM}: ${PROGRAM_OBJS}
 	@echo "Compiling '$@':"
 	echo ${PROGRAM_OBJS}
-	$(NVCC) ${NVCCFLAGS} -o $@ ${PROGRAM_OBJS} ${LIBS}
+	$(NVCC) ${NVCCFLAGS} -o $@ ${PROGRAM_OBJS}
 	
 ## Compile .o from .c
 %.o: %.c %.h

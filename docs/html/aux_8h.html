@@ -87,6 +87,16 @@ Functions</h2></td></tr>
 <tr class="memdesc:a3722ce8b1463945e5877fff5bb282e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the filename with a directory path (visit <a href="http://minkirri.apana.org.au/~abo/projects/librsync/small-1.0/replace/basename.c">http://minkirri.apana.org.au/~abo/projects/librsync/small-1.0/replace/basename.c</a> for original source code)  <a href="#a3722ce8b1463945e5877fff5bb282e74"></a><br/></td></tr>
 <tr class="memitem:a1078f93628eff6e0c1c0d4bd23d162e7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a1078f93628eff6e0c1c0d4bd23d162e7">time_diff</a> (struct timeval start, struct timeval end)</td></tr>
 <tr class="memdesc:a1078f93628eff6e0c1c0d4bd23d162e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the difference between two timeval in seconds.  <a href="#a1078f93628eff6e0c1c0d4bd23d162e7"></a><br/></td></tr>
+<tr class="memitem:a40481813433cfe61a300d848b63b8831"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a40481813433cfe61a300d848b63b8831">get_next_power_of_two</a> (int size)</td></tr>
+<tr class="memdesc:a40481813433cfe61a300d848b63b8831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next power of two greater than size.  <a href="#a40481813433cfe61a300d848b63b8831"></a><br/></td></tr>
+<tr class="memitem:a9701c73d7b2bdac58a29048df5e27968"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a9701c73d7b2bdac58a29048df5e27968">pad_data_to_align_with</a> (int *data, int current_size, int to_size, int with)</td></tr>
+<tr class="memdesc:a9701c73d7b2bdac58a29048df5e27968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a specific size using a padding.  <a href="#a9701c73d7b2bdac58a29048df5e27968"></a><br/></td></tr>
+<tr class="memitem:a331e546c32f8eb3d6096320b0d79902b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a331e546c32f8eb3d6096320b0d79902b">pad_data_to_align</a> (int *data, int current_size, int to_size)</td></tr>
+<tr class="memdesc:a331e546c32f8eb3d6096320b0d79902b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a specific size using 0 as padding.  <a href="#a331e546c32f8eb3d6096320b0d79902b"></a><br/></td></tr>
+<tr class="memitem:a901b1fa7c23128cc6eade5827696622c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#a901b1fa7c23128cc6eade5827696622c">pad_data_to_align_with_next_power_of_two_with</a> (int *data, int current_size, int with)</td></tr>
+<tr class="memdesc:a901b1fa7c23128cc6eade5827696622c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a power of two size using a padding.  <a href="#a901b1fa7c23128cc6eade5827696622c"></a><br/></td></tr>
+<tr class="memitem:ac11bdd772a7b3b92fcc9e44754b34cce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8h.html#ac11bdd772a7b3b92fcc9e44754b34cce">pad_data_to_align_with_next_power_of_two</a> (int *data, int current_size)</td></tr>
+<tr class="memdesc:ac11bdd772a7b3b92fcc9e44754b34cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a power of two size using 0 as padding.  <a href="#ac11bdd772a7b3b92fcc9e44754b34cce"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>header file for the auxiliary functions </p>
@@ -108,7 +118,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Macro to print on the stderr useful depuration information. It accepts a variable number of parameters. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="aux_8cu.html#a0035ed291e4299e984142f526a474dda" title="This function is based on the 3rd/debug.c debug function and operates using a very similar mode...">my_debug()</a> for more information about this function </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="aux_8c.html#a0035ed291e4299e984142f526a474dda" title="This function is based on the 3rd/debug.c debug function and operates using a very similar mode...">my_debug()</a> for more information about this function </dd></dl>
 
 </div>
 </div>
@@ -319,6 +329,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a40481813433cfe61a300d848b63b8831"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int get_next_power_of_two </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the next power of two greater than size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>with the current size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer with the next value</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aa081b3579707a7a0c7a8954bfbbee3a0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -445,6 +481,180 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a331e546c32f8eb3d6096320b0d79902b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pad_data_to_align </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a specific size using 0 as padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+    <tr><td class="paramname">to_size</td><td>with final size of the array</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9701c73d7b2bdac58a29048df5e27968"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pad_data_to_align_with </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>with</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a specific size using a padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+    <tr><td class="paramname">to_size</td><td>with final size of the array </td></tr>
+    <tr><td class="paramname">with</td><td>with the value to use as a padding</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac11bdd772a7b3b92fcc9e44754b34cce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pad_data_to_align_with_next_power_of_two </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a power of two size using 0 as padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer with the final array size</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a901b1fa7c23128cc6eade5827696622c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pad_data_to_align_with_next_power_of_two_with </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>with</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a power of two size using a padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+    <tr><td class="paramname">with</td><td>with the value to use as a padding </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer with the final array size</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a09788fb6741cb9177051c15c32f97d84"></a>
 <div class="memitem">
 <div class="memproto">
@@ -510,6 +720,6 @@ Functions</h2></td></tr>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 28 2012 04:09:25 for sortXXL</small></address>
+Generated on Mon Dec 31 2012 12:06:39 for sortXXL</small></address>
 </body>
 </html>

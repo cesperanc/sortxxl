@@ -6,20 +6,29 @@
  */
 
 #ifndef MODULE_SYSTEM_INFO_H
-#define	MODULE_SYSTEM_INFO_H
+	#define	MODULE_SYSTEM_INFO_H
 
-/**
- * @brief Output the CUDA system information
- * @param args_info struct gengetopt_args_info with the parameters given to the application
- * @author Diogo Serra <2120915@my.ipleiria.pt>
- */
-void system_info(struct gengetopt_args_info args_info);
+	#ifdef __cplusplus
+		extern "C" {
+	#include <cstddef>
+	#endif
 
-/**
- * @brief Compute the number of cores string
- * @author Diogo Serra <2120915@my.ipleiria.pt>
- */
-char* number_of_cores(double, double);
+			/**
+			 * @brief Output the CUDA system information
+			 * @param args_info struct gengetopt_args_info with the parameters given to the application
+			 * @author Diogo Serra <2120915@my.ipleiria.pt>
+			 */
+			void system_info(struct gengetopt_args_info args_info);
+
+			/**
+			 * @brief Compute the number of cores string
+			 * @author Diogo Serra <2120915@my.ipleiria.pt>
+			 */
+			char* number_of_cores(double, double);
+
+	#ifdef __cplusplus
+		}
+	#endif
 
 #endif	/* MODULE_SYSTEM_INFO_H */
 

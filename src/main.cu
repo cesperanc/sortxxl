@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
 
 #include "3rd/debug.h"
 #include "3rd/sortXXL_cmd.h"
@@ -22,6 +25,8 @@
 #include "includes/module_about.h"
 #include "includes/module_system_info.h"
 #include "includes/module_benchmark.h"
+#include "includes/module_demo.h"
+#include "includes/module_shared_stats.h"
 
 #include "main.h"
 
@@ -34,9 +39,10 @@
  * @author Cláudio Esperança <2120917@my.ipleiria.pt>, Diogo Serra <2120915@my.ipleiria.pt>, João Correia <2111415@my.ipleiria.pt>
  */
 int main(int argc, char *argv[]){
-    
+
     /* Variable declarations */
     struct gengetopt_args_info args_info;// structure for the command line parameters processing
+    SHARED_STATS_T* stats=NULL;
     int result = EXIT_SUCCESS;
     
     // Initializes the command line parser and check for the application parameters
@@ -44,16 +50,30 @@ int main(int argc, char *argv[]){
         DEBUG("\nInvalid parameters");
         result = M_INVALID_PARAMETERS;
     }
-    
-    // Sort the data
-    benchmark(args_info);
 
-    // Output the system information
-    system_info(args_info);
+    if(result==EXIT_SUCCESS){
 
-    // Output the credits
-    about_sort_XXL(args_info);
+    	// Initialize the data structures for statistics sharing
+    	shared_stats(&stats, argv[0], args_info.benchmark_given == 1?args_info.benchmark_arg:1, 0);
 
+		// Run the demo
+		demo(args_info, stats);
+
+		// Sort the data
+		benchmark(args_info, stats);
+
+		// Output the system information
+		system_info(args_info);
+
+		// Output the credits
+		about_sort_XXL(args_info);
+
+		// Wait for the child processes to exit
+		wait(&result);
+
+		// Remove shared stats
+		remove_shared_stats(stats);
+    }
     // Free the command line parser memory
     cmdline_parser_free(&args_info);
 

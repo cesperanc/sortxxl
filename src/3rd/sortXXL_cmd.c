@@ -43,7 +43,7 @@ const char *gengetopt_args_info_help[] = {
   "  -b, --benchmark=numTimes  Benchmark mode. Number of times that sortXXL that \n                              will execute, presenting the execution time in \n                              the end.  (default=`1')",
   "  -m, --min=minNumber       Minimum value to be sorted.",
   "  -M, --max=maxNumber       Maximum value to be sorted.",
-  "  -d, --demo                Demo mode.  (default=off)",
+  "  -d, --demo[=portNumber]   Demo mode with the port specification to listen for \n                              connections from HTTP clients  (default=`7681')",
   "  -g, --gpu                 Show graphic card's information.  (default=off)",
     0
 };
@@ -100,7 +100,8 @@ void clear_args (struct gengetopt_args_info *args_info)
   args_info->benchmark_orig = NULL;
   args_info->min_orig = NULL;
   args_info->max_orig = NULL;
-  args_info->demo_flag = 0;
+  args_info->demo_arg = 7681;
+  args_info->demo_orig = NULL;
   args_info->gpu_flag = 0;
   
 }
@@ -209,6 +210,7 @@ cmdline_parser_release (struct gengetopt_args_info *args_info)
   free_string_field (&(args_info->benchmark_orig));
   free_string_field (&(args_info->min_orig));
   free_string_field (&(args_info->max_orig));
+  free_string_field (&(args_info->demo_orig));
   
   
 
@@ -258,7 +260,7 @@ cmdline_parser_dump(FILE *outfile, struct gengetopt_args_info *args_info)
   if (args_info->max_given)
     write_into_file(outfile, "max", args_info->max_orig, 0);
   if (args_info->demo_given)
-    write_into_file(outfile, "demo", 0, 0 );
+    write_into_file(outfile, "demo", args_info->demo_orig, 0);
   if (args_info->gpu_given)
     write_into_file(outfile, "gpu", 0, 0 );
   
@@ -521,30 +523,6 @@ int update_arg(void *field, char **orig_field,
   return 0; /* OK */
 }
 
-
-static int check_modes(
-  int given1[], const char *options1[],
-                       int given2[], const char *options2[])
-{
-  int i = 0, j = 0, errors = 0;
-  
-  while (given1[i] >= 0) {
-    if (given1[i]) {
-      while (given2[j] >= 0) {
-        if (given2[j]) {
-          ++errors;
-          fprintf(stderr, "%s: option %s conflicts with option %s\n",
-                  package_name, options1[i], options2[j]);
-        }
-        ++j;
-      }
-    }
-    ++i;
-  }
-  
-  return errors;
-}
-
 int
 cmdline_parser_internal (
   int argc, char **argv, struct gengetopt_args_info *args_info,
@@ -591,12 +569,12 @@ cmdline_parser_internal (
         { "benchmark",	1, NULL, 'b' },
         { "min",	1, NULL, 'm' },
         { "max",	1, NULL, 'M' },
-        { "demo",	0, NULL, 'd' },
+        { "demo",	2, NULL, 'd' },
         { "gpu",	0, NULL, 'g' },
         { 0,  0, 0, 0 }
       };
 
-      c = getopt_long (argc, argv, "hVi:r:o:b:m:M:dg", long_options, &option_index);
+      c = getopt_long (argc, argv, "hVi:r:o:b:m:M:d::g", long_options, &option_index);
 
       if (c == -1) break;	/* Exit from `while (1)' loop.  */
 
@@ -694,12 +672,15 @@ cmdline_parser_internal (
             goto failure;
         
           break;
-        case 'd':	/* Demo mode..  */
+        case 'd':	/* Demo mode with the port specification to listen for connections from HTTP clients.  */
+          args_info->sortXXL_options_mode_counter += 1;
         
         
-          if (update_arg((void *)&(args_info->demo_flag), 0, &(args_info->demo_given),
-              &(local_args_info.demo_given), optarg, 0, 0, ARG_FLAG,
-              check_ambiguity, override, 1, 0, "demo", 'd',
+          if (update_arg( (void *)&(args_info->demo_arg), 
+               &(args_info->demo_orig), &(args_info->demo_given),
+              &(local_args_info.demo_given), optarg, 0, "7681", ARG_INT,
+              check_ambiguity, override, 0, 0,
+              "demo", 'd',
               additional_error))
             goto failure;
         

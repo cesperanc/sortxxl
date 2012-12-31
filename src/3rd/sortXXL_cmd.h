@@ -58,8 +58,9 @@ struct gengetopt_args_info
   int max_arg;	/**< @brief Maximum value to be sorted..  */
   char * max_orig;	/**< @brief Maximum value to be sorted. original value given at command line.  */
   const char *max_help; /**< @brief Maximum value to be sorted. help description.  */
-  int demo_flag;	/**< @brief Demo mode. (default=off).  */
-  const char *demo_help; /**< @brief Demo mode. help description.  */
+  int demo_arg;	/**< @brief Demo mode with the port specification to listen for connections from HTTP clients (default='7681').  */
+  char * demo_orig;	/**< @brief Demo mode with the port specification to listen for connections from HTTP clients original value given at command line.  */
+  const char *demo_help; /**< @brief Demo mode with the port specification to listen for connections from HTTP clients help description.  */
   int gpu_flag;	/**< @brief Show graphic card's information. (default=off).  */
   const char *gpu_help; /**< @brief Show graphic card's information. help description.  */
   

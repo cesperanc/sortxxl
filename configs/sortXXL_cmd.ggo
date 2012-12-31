@@ -40,8 +40,13 @@ modeoption "max" M "Maximum value to be sorted."
 	typestr="maxNumber"
 	optional
 
-option "demo" d "Demo mode."
-	flag off
+modeoption "demo" d "Demo mode with the port specification to listen for connections from HTTP clients"
+	int
+	mode="sortXXL options"
+	typestr="portNumber"
+	default="7681"
+	argoptional
+	optional
 
 option "gpu" g "Show graphic card's information."
 	flag off

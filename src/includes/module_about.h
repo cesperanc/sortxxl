@@ -6,14 +6,23 @@
  */
 
 #ifndef MODULE_ABOUT_H
-#define	MODULE_ABOUT_H
+	#define	MODULE_ABOUT_H
 
-/**
- * @brief Output the credits message
- * @param args_info struct gengetopt_args_info with the parameters given to the application
- *
- * @author Joao Correia <joao.pedro.j.correia@gmail.com>
- */
-void about_sort_XXL(struct gengetopt_args_info args_info);
+	#ifdef __cplusplus
+		extern "C" {
+			#include <cstddef>
+	#endif
+
+			/**
+			 * @brief Output the credits message
+			 * @param args_info struct gengetopt_args_info with the parameters given to the application
+			 *
+			 * @author Joao Correia <joao.pedro.j.correia@gmail.com>
+			 */
+			void about_sort_XXL(struct gengetopt_args_info args_info);
+
+	#ifdef __cplusplus
+		}
+	#endif
 #endif	/* MODULE_ABOUT_H */
 

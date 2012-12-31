@@ -29,6 +29,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -64,6 +65,7 @@
 <code>#include &lt;assert.h&gt;</code><br/>
 <code>#include &lt;time.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;limits.h&gt;</code><br/>
 <code>#include &quot;../3rd/debug.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="constants_8h_source.html">constants.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="aux_8h_source.html">aux.h</a>&quot;</code><br/>
@@ -90,6 +92,18 @@ Functions</h2></td></tr>
 <tr class="memdesc:aaed10cf41ea8fa3c6f4e57dcbf782c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the filename with a directory path.  <a href="#aaed10cf41ea8fa3c6f4e57dcbf782c6f"></a><br/></td></tr>
 <tr class="memitem:af0605cef2bf1aaafe5da3876cee1f5a8"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#af0605cef2bf1aaafe5da3876cee1f5a8">base_name</a> (char *path, const char separator)</td></tr>
 <tr class="memdesc:af0605cef2bf1aaafe5da3876cee1f5a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the filename with a directory path (visit <a href="http://minkirri.apana.org.au/~abo/projects/librsync/small-1.0/replace/basename.c">http://minkirri.apana.org.au/~abo/projects/librsync/small-1.0/replace/basename.c</a> for original source code)  <a href="#af0605cef2bf1aaafe5da3876cee1f5a8"></a><br/></td></tr>
+<tr class="memitem:a1078f93628eff6e0c1c0d4bd23d162e7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#a1078f93628eff6e0c1c0d4bd23d162e7">time_diff</a> (struct timeval start, struct timeval end)</td></tr>
+<tr class="memdesc:a1078f93628eff6e0c1c0d4bd23d162e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the difference between two timeval in seconds.  <a href="#a1078f93628eff6e0c1c0d4bd23d162e7"></a><br/></td></tr>
+<tr class="memitem:a40481813433cfe61a300d848b63b8831"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#a40481813433cfe61a300d848b63b8831">get_next_power_of_two</a> (int size)</td></tr>
+<tr class="memdesc:a40481813433cfe61a300d848b63b8831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next power of two greater than size.  <a href="#a40481813433cfe61a300d848b63b8831"></a><br/></td></tr>
+<tr class="memitem:a9701c73d7b2bdac58a29048df5e27968"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#a9701c73d7b2bdac58a29048df5e27968">pad_data_to_align_with</a> (int *data, int current_size, int to_size, int with)</td></tr>
+<tr class="memdesc:a9701c73d7b2bdac58a29048df5e27968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a specific size using a padding.  <a href="#a9701c73d7b2bdac58a29048df5e27968"></a><br/></td></tr>
+<tr class="memitem:a331e546c32f8eb3d6096320b0d79902b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#a331e546c32f8eb3d6096320b0d79902b">pad_data_to_align</a> (int *data, int current_size, int to_size)</td></tr>
+<tr class="memdesc:a331e546c32f8eb3d6096320b0d79902b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a specific size using 0 as padding.  <a href="#a331e546c32f8eb3d6096320b0d79902b"></a><br/></td></tr>
+<tr class="memitem:a901b1fa7c23128cc6eade5827696622c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#a901b1fa7c23128cc6eade5827696622c">pad_data_to_align_with_next_power_of_two_with</a> (int *data, int current_size, int with)</td></tr>
+<tr class="memdesc:a901b1fa7c23128cc6eade5827696622c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a power of two size using a padding.  <a href="#a901b1fa7c23128cc6eade5827696622c"></a><br/></td></tr>
+<tr class="memitem:ac11bdd772a7b3b92fcc9e44754b34cce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aux_8c.html#ac11bdd772a7b3b92fcc9e44754b34cce">pad_data_to_align_with_next_power_of_two</a> (int *data, int current_size)</td></tr>
+<tr class="memdesc:ac11bdd772a7b3b92fcc9e44754b34cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align the data with a power of two size using 0 as padding.  <a href="#ac11bdd772a7b3b92fcc9e44754b34cce"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>source file for the auxiliary functions </p>
@@ -302,6 +316,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a40481813433cfe61a300d848b63b8831"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int get_next_power_of_two </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the next power of two greater than size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>with the current size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer with the next value</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="abcb1afb2b75973b180e31c69d28f3fc6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -428,6 +468,180 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a331e546c32f8eb3d6096320b0d79902b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pad_data_to_align </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a specific size using 0 as padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+    <tr><td class="paramname">to_size</td><td>with final size of the array</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9701c73d7b2bdac58a29048df5e27968"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pad_data_to_align_with </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>with</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a specific size using a padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+    <tr><td class="paramname">to_size</td><td>with final size of the array </td></tr>
+    <tr><td class="paramname">with</td><td>with the value to use as a padding</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac11bdd772a7b3b92fcc9e44754b34cce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pad_data_to_align_with_next_power_of_two </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a power of two size using 0 as padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer with the final array size</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a901b1fa7c23128cc6eade5827696622c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pad_data_to_align_with_next_power_of_two_with </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>with</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Align the data with a power of two size using a padding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>with the array to store the data </td></tr>
+    <tr><td class="paramname">current_size</td><td>with the current size of the array without padding </td></tr>
+    <tr><td class="paramname">with</td><td>with the value to use as a padding </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer with the final array size</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a89e255ab73fedc9351160e41f6d28925"></a>
 <div class="memitem">
 <div class="memproto">
@@ -454,8 +668,45 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1078f93628eff6e0c1c0d4bd23d162e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float time_diff </td>
+          <td>(</td>
+          <td class="paramtype">struct timeval&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct timeval&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate the difference between two timeval in seconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>with the start time </td></tr>
+    <tr><td class="paramname">end</td><td>with the end time </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>float with the difference</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Cláudio Esperança <a href="#" onclick="location.href='mai'+'lto:'+'ces'+'pe'+'ran'+'c@'+'gma'+'il'+'.co'+'m'; return false;">cespe<span style="display: none;">.nosp@m.</span>ranc<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a>, Diogo Serra <a href="#" onclick="location.href='mai'+'lto:'+'208'+'10'+'08@'+'st'+'ude'+'nt'+'.es'+'tg'+'.ip'+'le'+'iri'+'a.'+'pt'; return false;">20810<span style="display: none;">.nosp@m.</span>08@s<span style="display: none;">.nosp@m.</span>tuden<span style="display: none;">.nosp@m.</span>t.es<span style="display: none;">.nosp@m.</span>tg.ip<span style="display: none;">.nosp@m.</span>leir<span style="display: none;">.nosp@m.</span>ia.pt</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 25 2012 10:46:27 for sortXXL</small></address>
+Generated on Mon Dec 31 2012 12:06:39 for sortXXL</small></address>
 </body>
 </html>

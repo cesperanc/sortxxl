@@ -1,7 +1,8 @@
-# Chronological time: 1088.832031
-# GPU time: 0.254976
-# Number of sorted elements: 16
-# 2012_12_28 04:08:49
+# Chronological time: 20552.365234
+# GPU time: 8.352350
+# Number of sorted elements: 22
+# 2012_12_31 12:05:15
+856
 943
 1622
 1982
@@ -18,3 +19,8 @@
 8415
 8930
 9664
+10252
+10408
+10835
+11069
+11564

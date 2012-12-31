@@ -16,6 +16,7 @@
 #include <assert.h>
 #include <time.h>
 #include <string.h>
+#include <limits.h>
 
 #include "../3rd/debug.h"
 #include "constants.h"
@@ -191,7 +192,7 @@ int remove_directory(const char *path){
           }
 
           len = path_len + strlen(p->d_name) + 2; 
-          buf = malloc(len);
+          buf = (char *)malloc(len);
 
           if (buf){
              struct stat statbuf;
@@ -236,7 +237,7 @@ char* get_current_time(char* format, int num_chars){
     t = time(NULL);
     ltm = localtime(&t);
 
-    if((date=malloc((num_chars)*sizeof(char)))==NULL){
+    if((date = (char *)malloc((num_chars)*sizeof(char)))==NULL){
         ERROR(M_FAILED_MEMORY_ALLOCATION,"\nMemory allocation failed for date");
     }
 
@@ -263,7 +264,7 @@ char* concatenate_filename(const char* directory, const char* filename, char sep
     char* result = NULL;
     size_t len;
     len = (strlen(directory)+strlen(filename)+2)*sizeof(char);
-    if((result=malloc(len))==NULL){
+    if((result = (char *)malloc(len))==NULL){
         ERROR(M_FAILED_MEMORY_ALLOCATION,"\nMemory allocation failed for filename concatenation");
     }
     snprintf(result, len, "%s%c%s", directory, separator, filename);
@@ -286,4 +287,47 @@ char* base_name (char *path, const char separator){
 
     /* If found, return the address of the following character, or the start of the parameter passed in.  */
     return basename ? ++basename : (char*)path;
+}
+
+/**
+ * @brief Calculate the difference between two timeval in seconds
+ * @param start with the start time
+ * @param end with the end time
+ * @return float with the difference
+ *
+ * @author Cláudio Esperança <cesperanc@gmail.com>, Diogo Serra <2081008@student.estg.ipleiria.pt>
+ */
+float time_diff(struct timeval start, struct timeval end){
+	int seconds_divisor = 1000000;
+
+	return ((float)(((end.tv_sec * seconds_divisor + end.tv_usec) - (start.tv_sec * seconds_divisor + start.tv_usec))))/seconds_divisor;
+}
+
+int get_next_power_of_two(int size){
+	int n = 1;
+	while (n < size) n *= 2;
+	return n;
+}
+
+void pad_data_to_align_with(int *data, int current_size, int to_size, int with){
+	int i;
+	for(i=current_size; i<to_size; i++){
+		data[i] = with;
+	}
+}
+
+void pad_data_to_align(int *data, int current_size, int to_size){
+	pad_data_to_align_with(data, current_size, to_size, INT_MAX);
+}
+
+int pad_data_to_align_with_next_power_of_two_with(int *data, int current_size, int with){
+	int next_power_of_two = get_next_power_of_two(current_size);
+	pad_data_to_align_with(data, current_size, next_power_of_two, with);
+	return next_power_of_two;
+}
+
+int pad_data_to_align_with_next_power_of_two(int *data, int current_size){
+	int next_power_of_two = get_next_power_of_two(current_size);
+	pad_data_to_align(data, current_size, next_power_of_two);
+	return next_power_of_two;
 }
