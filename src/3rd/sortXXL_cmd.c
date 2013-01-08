@@ -523,6 +523,30 @@ int update_arg(void *field, char **orig_field,
   return 0; /* OK */
 }
 
+
+static int check_modes(
+  int given1[], const char *options1[],
+                       int given2[], const char *options2[])
+{
+  int i = 0, j = 0, errors = 0;
+  
+  while (given1[i] >= 0) {
+    if (given1[i]) {
+      while (given2[j] >= 0) {
+        if (given2[j]) {
+          ++errors;
+          fprintf(stderr, "%s: option %s conflicts with option %s\n",
+                  package_name, options1[i], options2[j]);
+        }
+        ++j;
+      }
+    }
+    ++i;
+  }
+  
+  return errors;
+}
+
 int
 cmdline_parser_internal (
   int argc, char **argv, struct gengetopt_args_info *args_info,

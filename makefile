@@ -12,10 +12,10 @@
 include ./configs/makefile.inc
 
 ## Flags to the CC compiler
-CFLAGS= ${LIBS}
+CFLAGS=${LIBS}
 
 ## Flags to the compiler
-NVCCFLAGS=-lcublas -lcudart -lcurand ${LIBS}
+NVCCFLAGS=${LIBS}
 
 ## Cuda compiler binary
 NVCC:=nvcc
@@ -43,8 +43,24 @@ endif
 .PHONY: cleandocs
 .PHONY: gengetopt
 .PHONY: debug
+.PHONY: static
+.PHONY: static32
+.PHONY: 32
 
 .SUFFIXES: .c .cu .o
+
+## Compile with 32 bits support
+32: CFLAGS += -m32
+32: NVCCFLAGS += -m32
+32: ${PROGRAM}
+
+## Compile with 32 bits support and static linking
+static32: CFLAGS += -static -m32
+static32: ${PROGRAM}
+
+## Compile with static linking
+static: CFLAGS += -static
+static: ${PROGRAM}
 
 ## Compile with depuration
 debug: CFLAGS += -D SHOW_DEBUG -Wall -W -g -Wmissing-prototypes -Wsign-compare -Wunused-parameter -Wunused-function
@@ -85,13 +101,12 @@ indent:
 #${PROGRAM}: gengetopt ${PROGRAM_OBJS}
 ${PROGRAM}: ${PROGRAM_OBJS}
 	@echo "Compiling '$@':"
-	echo ${PROGRAM_OBJS}
-	$(NVCC) ${NVCCFLAGS} -o $@ ${PROGRAM_OBJS}
+	$(NVCC) $(NVCCFLAGS) -o $@ ${PROGRAM_OBJS}
 	
 ## Compile .o from .c
 %.o: %.c %.h
 	@echo "Construction the object '$@' with ${CC}:"
-	${CC} ${CFLAGS} ${EXTRA_CCFLAGS} -c -o $@ $<
+	${CC} ${CFLAGS}${EXTRA_CCFLAGS} -c -o $@ $<
 	
 %.cu.o: %.cu
 	@echo "Construction the object '$@' with ${NVCC}:"

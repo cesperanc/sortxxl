@@ -77,20 +77,22 @@
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        <span class="keywordtype">int</span> <a class="code" href="aux_8c.html#a40481813433cfe61a300d848b63b8831" title="Get the next power of two greater than size.">get_next_power_of_two</a>(<span class="keywordtype">int</span> size);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        <span class="keywordtype">void</span> <a class="code" href="aux_8c.html#a9701c73d7b2bdac58a29048df5e27968" title="Align the data with a specific size using a padding.">pad_data_to_align_with</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size, <span class="keywordtype">int</span> to_size, <span class="keywordtype">int</span> with);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        <span class="keywordtype">void</span> <a class="code" href="aux_8c.html#a331e546c32f8eb3d6096320b0d79902b" title="Align the data with a specific size using 0 as padding.">pad_data_to_align</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size, <span class="keywordtype">int</span> to_size);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <span class="keywordtype">int</span> <a class="code" href="aux_8c.html#a901b1fa7c23128cc6eade5827696622c" title="Align the data with a power of two size using a padding.">pad_data_to_align_with_next_power_of_two_with</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size, <span class="keywordtype">int</span> with);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        <span class="keywordtype">int</span> <a class="code" href="aux_8c.html#ac11bdd772a7b3b92fcc9e44754b34cce" title="Align the data with a power of two size using 0 as padding.">pad_data_to_align_with_next_power_of_two</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">        #ifdef __cplusplus</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor"></span>                }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">        #endif</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif </span><span class="comment">/* AUX_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        <span class="keywordtype">int</span> <a class="code" href="aux_8c.html#a4032f88fc847159a55ec14df380d9dfd" title="Get the previous power of two of the provided number.">get_previous_power_of_two</a>(<span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        <span class="keywordtype">void</span> <a class="code" href="aux_8c.html#a9701c73d7b2bdac58a29048df5e27968" title="Align the data with a specific size using a padding.">pad_data_to_align_with</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size, <span class="keywordtype">int</span> to_size, <span class="keywordtype">int</span> with);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                        <span class="keywordtype">void</span> <a class="code" href="aux_8c.html#a331e546c32f8eb3d6096320b0d79902b" title="Align the data with a specific size using 0 as padding.">pad_data_to_align</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size, <span class="keywordtype">int</span> to_size);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                        <span class="keywordtype">int</span> <a class="code" href="aux_8c.html#a901b1fa7c23128cc6eade5827696622c" title="Align the data with a power of two size using a padding.">pad_data_to_align_with_next_power_of_two_with</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size, <span class="keywordtype">int</span> with);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        <span class="keywordtype">int</span> <a class="code" href="aux_8c.html#ac11bdd772a7b3b92fcc9e44754b34cce" title="Align the data with a power of two size using 0 as padding.">pad_data_to_align_with_next_power_of_two</a>(<span class="keywordtype">int</span> *data, <span class="keywordtype">int</span> current_size);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">        #ifdef __cplusplus</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor"></span>                }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">        #endif</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif </span><span class="comment">/* AUX_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 31 2012 12:06:39 for sortXXL</small></address>
+Generated on Tue Jan 8 2013 01:04:33 for sortXXL</small></address>
 </body>
 </html>

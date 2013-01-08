@@ -204,6 +204,11 @@
 		 */
 		#define M_MAXIMUM_SHMAT_CLIENT_CONNECTED 31
 
+		/**
+		 * Define the exit value when there the GPU doesn't have the necessary compute capabilities
+		 */
+		#define UNSUFFICENT_GPU_CAMPABILITIES 32
+
 
 	#ifdef __cplusplus
 		}

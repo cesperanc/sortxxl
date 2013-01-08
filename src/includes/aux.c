@@ -309,6 +309,12 @@ int get_next_power_of_two(int size){
 	return n;
 }
 
+int get_previous_power_of_two(int size){
+	int n = 1;
+	while (n*2 < size) n *= 2;
+	return n;
+}
+
 void pad_data_to_align_with(int *data, int current_size, int to_size, int with){
 	int i;
 	for(i=current_size; i<to_size; i++){

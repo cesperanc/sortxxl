@@ -25,7 +25,7 @@ ${SRC_DIR_3RD}/${PROGRAM_OPT}.o: ${SRC_DIR_3RD}/${PROGRAM_OPT}.c ${SRC_DIR_3RD}/
 
 
 ## Force the compilation as 32 bits
-#EXTRA_CCFLAGS=-m32
+EXTRA_CCFLAGS=# -m32
 
 ## Libraries to include
-LIBS= -lcrypto -lz #-pthread 
+LIBS=-lcublas -lcudart -lcurand -lcrypto -lz

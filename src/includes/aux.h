@@ -46,6 +46,15 @@
 			int get_next_power_of_two(int size);
 
 			/**
+			 * @brief Get the previous power of two of the provided number
+			 * @param size with the current size
+			 * @return integer with the immediate previous value
+			 *
+			 * @author Cláudio Esperança <cesperanc@gmail.com>
+			 */
+			int get_previous_power_of_two(int size);
+
+			/**
 			 * @brief Align the data with a specific size using a padding
 			 * @param data with the array to store the data
 			 * @param current_size with the current size of the array without padding

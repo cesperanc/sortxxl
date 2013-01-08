@@ -29,6 +29,14 @@
 			} STATS;
 
 			/**
+			 * @brief Flag the exit request
+			 * @param signum with the signal request
+			 *
+			 * @author Cláudio Esperança <cesperanc@gmail.com>
+			 */
+			void termination_handler (int signum);
+
+			/**
 			 * @brief Generate the benchmark information
 			 * @param args_info struct gengetopt_args_info with the parameters given to the application
 			 * @param stats with the reference to the statistical data
