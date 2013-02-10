@@ -93,8 +93,8 @@ float bitonic_sort(int **values, int n){
 	HANDLE_ERROR (cudaEventRecord (start, 0));
 
 	// execute kernel
-	for (k = 2; k <= padded_size; k <<= 1) {
-		for (j = k >> 1; j > 0; j = j >> 1) {
+	for (k = 2; k <= padded_size; k <<= 1) { // k<<=1  <=> k=k*2^1. k=2,4,8,16,32,64,...,padded_size?
+		for (j = k >> 1; j > 0; j = j >> 1) { // j = j >> 1 <=> j=j/(2^1). j=1, 2,1, 4,2,1, 8,4,2,1, ..., padded_size/2,...,1?
 			if (padded_size < max_treads_to_use)
 				cuda_bitonic_sort <<< 1, padded_size >>> (dev_values, j, k, padded_size);
 			else
