@@ -11,4 +11,4 @@ The code was written in C and designed to run on a Linux machine with cuda compa
 
 # Screenshots #
 ## Demo ##
-<img src='http://wiki.sortxxl.googlecode.com/git/demoSortXXL.png' alt='Demo mode image' title='Image of the demo mode' />
+![Demo mode image](https://github.com/cesperanc/sortxxl/raw/wiki/demoSortXXL.png)
